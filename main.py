@@ -18,6 +18,7 @@ import os
 # Load environment variables from .env
 load_dotenv()
 secret_key=os.getenv("SECRET_KEY")
+database_URI=os.getenv('SQLALCHEMY_DATABASE_URI')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = secret_key
 ckeditor = CKEditor(app)
@@ -31,8 +32,7 @@ login_manager.init_app(app)
 class Base(DeclarativeBase):
     pass
 
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog1.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = database_URI
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -284,4 +284,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+    app.run(debug=False)
