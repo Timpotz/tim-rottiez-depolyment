@@ -18,7 +18,7 @@ import os
 # Load environment variables from .env
 load_dotenv()
 secret_key=os.getenv("SECRET_KEY")
-database_URI=os.getenv('SQLALCHEMY_DATABASE_URI')
+database_URI=os.getenv('DB_URI')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = secret_key
 ckeditor = CKEditor(app)
